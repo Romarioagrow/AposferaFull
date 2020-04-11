@@ -33,7 +33,6 @@ public class Star extends AstroObject {
     /*public void setStarParams(String starClass, Integer starTemp) {
         this.spectralClass = starClass;
         this.temperature = starTemp;
-
     }*/
     //LinkedList<Planet> planets = new LinkedList<>();
 }

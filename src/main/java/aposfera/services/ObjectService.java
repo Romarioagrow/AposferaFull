@@ -17,13 +17,16 @@ import java.util.Map;
 public class ObjectService {
     private final AstroRepo astroRepo;
 
-    public List<AstroObject> addNewStar(Map<String, String> data) {
+    public List<Star> addNewStar(Map<String, String> data) {
         log.info(data.toString());
 
         //final String type = "Star";
         String name = data.get("newStarName");
+
+        if (astroRepo.findStarByObjectName(name) != null) return null;
+
         String starClass = data.get("newStarClass");
-        int starTemp = Integer.parseInt(data.get("newStarTemp"));
+        int starTemp = Integer.parseInt(data.get("newStarTemp").trim());
 
         Star newStar = new Star(name/*,type*/);
         newStar.setSpectralClass(starClass);
@@ -32,7 +35,7 @@ public class ObjectService {
 
         log.info(newStar.toString());
         astroRepo.save(newStar);
-        return astroRepo.findAll();
+        return listAllStars();
     }
 
     public List<Star> listAllStars() {
@@ -40,7 +43,7 @@ public class ObjectService {
         return astroRepo.findAllByObjectTypeIgnoreCase("Star");
     }
 
-    public List<AstroObject> addNewPlanetToStar(Map<String, String> data) {
+    public List<Star> addNewPlanetToStar(Map<String, String> data) {
         log.info(data.toString());
 
         String starName = data.get("starName");
@@ -59,13 +62,13 @@ public class ObjectService {
         astroRepo.save(star);
         log.info(star.toString());
         //star.getLocation().put()
-        return astroRepo.findAll();
+        return listAllStars();
     }
 
-    public List<AstroObject> deleteStar(String objectID) {
+    public List<Star> deleteStar(String objectID) {
         log.info(objectID);
         astroRepo.delete(astroRepo.findByObjectID(objectID));
-        return astroRepo.findAll();
+        return listAllStars();
     }
 
     /*public boolean setStarParams(Star newStar, String starClass, Integer starTemp) {
@@ -74,8 +77,5 @@ public class ObjectService {
         return objectRepo.sa
         *//*this.spectralClass = starClass;
         this.temperature = starTemp;*//*
-
     }*/
-
-
 }

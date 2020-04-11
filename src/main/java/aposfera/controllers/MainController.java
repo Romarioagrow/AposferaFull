@@ -23,17 +23,17 @@ public class MainController {
     }
 
     @PostMapping("/astro/star/addPlanet")
-    private List<AstroObject> addNewPlanetToStar(@RequestBody Map<String, String> data) {
+    private List<Star> addNewPlanetToStar(@RequestBody Map<String, String> data) {
         return objectService.addNewPlanetToStar(data);
     }
 
     @PostMapping("/astro/star/new")
-    private List<AstroObject> addNewStar(@RequestBody Map<String, String> data) {
+    private List<Star> addNewStar(@RequestBody Map<String, String> data) {
         return objectService.addNewStar(data);
     }
 
     @PostMapping("/astro/star/delete")
-    private List<AstroObject> deleteStar(@RequestBody String objectID) {
+    private List<Star> deleteStar(@RequestBody String objectID) {
         return objectService.deleteStar(objectID);
     }
 

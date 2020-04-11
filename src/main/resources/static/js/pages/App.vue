@@ -4,20 +4,42 @@
             <v-container>
                 <v-row>
                     <v-col v-for="star in stars" :key="star.objectID">
-                        <v-card>
+
+                        <!--STAR CARD-->
+                        <v-card max-width="250">
                             <v-card-actions v-if="deleteMode">
                                 <v-btn icon @click="deleteStar(star.objectID)">
                                     <v-icon>mdi-delete</v-icon>
                                 </v-btn>
                             </v-card-actions>
 
-                            <v-card-text>
-                                {{star.objectName}}
-                                <v-divider/>
-                                {{star.spectralClass}}
-                                <v-divider/>
-                                {{star.planets}}
-                            </v-card-text>
+                            <v-row>
+                                <v-col cols="8">
+                                    <v-card-title>
+                                        <v-icon>mdi-star-four-points-outline</v-icon>
+                                        <span>&nbsp;{{star.objectName}}</span>
+                                    </v-card-title>
+                                </v-col>
+                                <v-col style="padding-top: 17px">
+                                    <v-card-text>
+                                        {{star.spectralClass}}
+                                    </v-card-text>
+                                </v-col>
+                            </v-row>
+
+                            <v-card-subtitle>
+                                Planets
+                            </v-card-subtitle>
+
+                            <v-card-actions v-for="planet in star.planets" :key="planet.objectID">
+                                <v-chip class="ma-2" :color="computePlanetColor(planet.planetType)" :text-color="computePlanetColor(planet.planetType)" outlined>
+                                    <v-avatar left>
+                                        <v-icon>mdi-earth</v-icon>
+                                    </v-avatar>
+                                    <span class="font-weight-medium">{{planet.objectName}}&nbsp;</span>
+                                    <span class="font-weight-light">{{planet.planetType}}</span>
+                                </v-chip>
+                            </v-card-actions>
                         </v-card>
                     </v-col>
                 </v-row>
@@ -42,7 +64,7 @@
                         </v-row>
                     </v-card-actions>
                     <v-card-actions>
-                        <v-btn color="primary" block @click="addNewStar()">Add New Star</v-btn>
+                        <v-btn color="primary" @click="addNewStar()" :disabled="comp_starButton">Add New Star</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-container>
@@ -71,7 +93,7 @@
                         </v-row>
                     </v-card-actions>
                     <v-card-actions>
-                        <v-btn color="success" block @click="addNewPlanet()">Add New Planet</v-btn>
+                        <v-btn color="success" @click="addNewPlanet()" :disabled="comp_planetButton">Add New Planet</v-btn>
                     </v-card-actions>
                 </v-card>
 
@@ -118,7 +140,20 @@
                 //console.log(this.objects)
             })
         },
+
+
         methods: {
+            computePlanetColor(planetType) {
+                switch (planetType) {
+                    case 'Metal': return '#9f8164'
+                    case 'Hot': return '#94480e'
+                    case 'Life': return 'indigo'
+                    case 'Rock': return '#780109'
+                    default: return 'grey'
+                }
+            },
+
+
             deleteStar(objectID) {
                 console.log(objectID)
 
@@ -156,6 +191,14 @@
             }
         },
         computed: {
+            comp_planetButton() {
+                return !this.newPlanetName
+            },
+
+            comp_starButton() {
+                return !this.newStarName
+            },
+
             starsAvailable () {
                 let starsAvailable = []
                 //this.stars = (star) => star.objectName
