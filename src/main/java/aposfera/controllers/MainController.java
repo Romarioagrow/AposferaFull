@@ -32,5 +32,10 @@ public class MainController {
         return objectService.addNewStar(data);
     }
 
+    @PostMapping("/astro/star/delete")
+    private List<AstroObject> deleteStar(@RequestBody String objectID) {
+        return objectService.deleteStar(objectID);
+    }
+
 
 }

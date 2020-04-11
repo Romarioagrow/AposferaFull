@@ -2,7 +2,7 @@ package aposfera.services;
 
 import aposfera.general.objects.astro.AstroObject;
 import aposfera.general.objects.astro.Planet;
-import aposfera.repos.ObjectRepo;
+import aposfera.repos.AstroRepo;
 import aposfera.general.objects.astro.Star;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -15,15 +15,13 @@ import java.util.Map;
 @Service
 @AllArgsConstructor
 public class ObjectService {
-    private final ObjectRepo objectRepo;
+    private final AstroRepo astroRepo;
 
     public List<AstroObject> addNewStar(Map<String, String> data) {
-
         log.info(data.toString());
 
         //final String type = "Star";
         String name = data.get("newStarName");
-
         String starClass = data.get("newStarClass");
         int starTemp = Integer.parseInt(data.get("newStarTemp"));
 
@@ -33,51 +31,46 @@ public class ObjectService {
         //setStarParams();
 
         log.info(newStar.toString());
-        objectRepo.save(newStar);
-
-
-        return objectRepo.findAll();
+        astroRepo.save(newStar);
+        return astroRepo.findAll();
     }
 
     public List<Star> listAllStars() {
-        return objectRepo.findAllByObjectType("Star");
+        log.info(astroRepo.findAllByObjectTypeIgnoreCase("Star").toString());
+        return astroRepo.findAllByObjectTypeIgnoreCase("Star");
     }
 
     public List<AstroObject> addNewPlanetToStar(Map<String, String> data) {
-
         log.info(data.toString());
 
         String starName = data.get("starName");
         String newPlanetName = data.get("newPlanetName");
         String newPlanetType = data.get("newPlanetType");
 
-        Star star = objectRepo.findStarByObjectName(starName);
-
+        Star star = astroRepo.findStarByObjectName(starName);
         if (star == null) return null;
 
         Planet newPlanet = new Planet(newPlanetName);
         newPlanet.setPlanetType(newPlanetType);
-        objectRepo.save(newPlanet);
+        astroRepo.save(newPlanet);
 
         //String planetName = "Planet " + newPlanetName;
         star.getPlanets().add(newPlanet);
-
-        objectRepo.save(star);
-
+        astroRepo.save(star);
         log.info(star.toString());
-
-
         //star.getLocation().put()
+        return astroRepo.findAll();
+    }
 
-
-        return objectRepo.findAll();
+    public List<AstroObject> deleteStar(String objectID) {
+        log.info(objectID);
+        astroRepo.delete(astroRepo.findByObjectID(objectID));
+        return astroRepo.findAll();
     }
 
     /*public boolean setStarParams(Star newStar, String starClass, Integer starTemp) {
-
         newStar.setSpectralClass(starClass);
         newStar.setTemperature(starTemp);
-
         return objectRepo.sa
         *//*this.spectralClass = starClass;
         this.temperature = starTemp;*//*

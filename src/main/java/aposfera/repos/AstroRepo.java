@@ -6,10 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ObjectRepo extends JpaRepository<AstroObject, String> {
+public interface AstroRepo extends JpaRepository<AstroObject, String> {
 
-    List<Star> findAllByObjectType(String type);
+    List<Star> findAllByObjectTypeIgnoreCase(String type);
 
     Star findStarByObjectName(String name);
+
+    AstroObject findByObjectID(String objectID);
 
 }

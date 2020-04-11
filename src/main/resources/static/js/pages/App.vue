@@ -5,6 +5,12 @@
                 <v-row>
                     <v-col v-for="star in stars" :key="star.objectID">
                         <v-card>
+                            <v-card-actions v-if="deleteMode">
+                                <v-btn icon @click="deleteStar(star.objectID)">
+                                    <v-icon>mdi-delete</v-icon>
+                                </v-btn>
+                            </v-card-actions>
+
                             <v-card-text>
                                 {{star.objectName}}
                                 <v-divider/>
@@ -68,6 +74,14 @@
                         <v-btn color="success" block @click="addNewPlanet()">Add New Planet</v-btn>
                     </v-card-actions>
                 </v-card>
+
+                <v-row>
+                    <v-col>
+                        <v-btn color="red" :outlined="!deleteMode" @click.stop="deleteMode = !deleteMode">Delete Mode</v-btn>
+                    </v-col>
+                </v-row>
+
+
             </v-container>
         </v-content>
     </v-app>
@@ -83,6 +97,8 @@
     export default {
         data() {
             return {
+                deleteMode: false,
+
                 newStarName:'',
                 newStarClass:'',
                 newStarTemp:'',
@@ -91,17 +107,27 @@
                 newPlanetName:'',
                 newPlanetType:'',
                 starName: ''
-
             }
         },
         created() {
             const uri = '/api/general/astro/star'
             axios.get(uri).then(response => {
+
                 this.stars = response.data
+                console.log(this.stars)
                 //console.log(this.objects)
             })
         },
         methods: {
+            deleteStar(objectID) {
+                console.log(objectID)
+
+                const uri = '/api/general/astro/star/delete'
+                axios.post(uri, objectID, config).then(response => {
+                    this.stars = response.data
+                })
+            },
+
             addNewStar() {
                 const data = {
                     'newStarName': this.newStarName,
@@ -112,12 +138,10 @@
                 const uri = '/api/general/astro/star/new'
                 axios.post(uri, data, config).then(response => {
                     this.stars = response.data
-                    //console.log(this.objects)
                 })
             },
 
             addNewPlanet() {
-
                 const data = {
                     'starName': this.starName,
                     'newPlanetName': this.newPlanetName,
@@ -127,8 +151,6 @@
                 const uri = '/api/general/astro/star/addPlanet'
                 axios.post(uri, data, config).then(response => {
                     this.stars = response.data
-
-                    //console.log(this.objects)
                 })
 
             }
