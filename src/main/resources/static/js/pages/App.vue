@@ -28,10 +28,14 @@
                             </v-row>
 
                             <v-card-subtitle>
-                                Planets
+                                <span class="font-weight-medium">{{star.planets.length}}</span>&nbsp;
+                                <!---->
+                                <span v-if="star.planets.length === 1">Planet</span>
+                                <span v-else>Planets</span>
                             </v-card-subtitle>
 
-                            <v-card-actions v-for="planet in star.planets" :key="planet.objectID">
+                            <v-card-actions v-for="(planet, i) in star.planets" :key="planet.objectID">
+                                <span class="font-weight-thin">{{i+1}}&nbsp;</span>
                                 <v-chip class="ma-2" :color="computePlanetColor(planet.planetType)" :text-color="computePlanetColor(planet.planetType)" outlined>
                                     <v-avatar left>
                                         <v-icon>mdi-earth</v-icon>
