@@ -74,7 +74,7 @@
 
                                 <v-col cols="3">
                                     <v-card-actions>
-                                        <v-card>
+                                        <v-card outlined>
                                             <v-card-actions>
                                                 <v-btn
                                                         color="#feb92e"
@@ -85,9 +85,9 @@
                                                         height="400"
                                                 >
                                                     <img
-                                                            src="http://pngimg.com/uploads/sun/sun_PNG13449.png"
-                                                            width="400"
-                                                            height="400">
+                                                            src="http://pngimg.com/uploads/sun/sun_PNG13424.png"
+                                                            width="490"
+                                                            height="490">
                                                 </v-btn>
                                             </v-card-actions>
                                         </v-card>
@@ -100,7 +100,7 @@
                                         <div>
                                             <v-row >
                                                 <!--PLANET CARD-->
-                                                <v-card v-for="(planet, i) in star.planets" :key="planet.objectID" style="margin: auto;" class="mb-1 ml-2">
+                                                <v-card outlined v-for="(planet, i) in star.planets" :key="planet.objectID" style="margin: auto;" class="mb-1 ml-2">
                                                     <v-col>
                                                         <span class="font-weight-thin">{{i + 1}}</span>
                                                         <v-chip class="ma-2" :color="computePlanetColor(planet.planetType)" :text-color="computePlanetColor(planet.planetType)" outlined>
@@ -197,6 +197,7 @@
                                         :items="starsAvailable"
                                         v-model="starName"
                                         label="Select Star"
+                                        @change="selectStar()"
                                         solo
                                 ></v-select>
                             </v-col>
@@ -212,14 +213,58 @@
                         <v-btn color="success" @click="addNewPlanet()" :disabled="comp_planetButton">Add New Planet</v-btn>
                     </v-card-actions>
                 </v-card>
-
                 <v-row>
                     <v-col>
                         <v-btn color="red" :outlined="!deleteMode" @click.stop="deleteMode = !deleteMode">Delete Mode</v-btn>
                     </v-col>
                 </v-row>
+            </v-container>
 
 
+
+            <!--MOON TO PLANET-->
+
+            <v-container>
+                <v-card>
+                    <v-card-title>
+                        Add moon to planet
+                    </v-card-title>
+                    <v-card-actions>
+                        <v-row>
+                            <v-col>
+                                <v-select
+                                        :items="starsAvailable"
+                                        v-model="starName"
+                                        label="Select star"
+                                        @change="selectStar()"
+                                        solo
+                                ></v-select>
+                            </v-col>
+                            <v-col>
+                                <v-select
+                                        :items="planetsAvailable"
+                                        v-model="planetName"
+                                        label="Select planet"
+                                        solo
+                                ></v-select>
+                            </v-col>
+                            <v-col>
+                                <v-text-field label="Moon name" v-model="newPlanetName"></v-text-field>
+                            </v-col>
+                            <v-col>
+                                <v-text-field label="Planet type" v-model="newPlanetType"></v-text-field>
+                            </v-col>
+                        </v-row>
+                    </v-card-actions>
+                    <v-card-actions>
+                        <v-btn color="success" @click="addNewMoon()" :disabled="comp_planetButton">Add New Moon</v-btn>
+                    </v-card-actions>
+                </v-card>
+                <v-row>
+                    <v-col>
+                        <v-btn color="red" :outlined="!deleteMode" @click.stop="deleteMode = !deleteMode">Delete Mode</v-btn>
+                    </v-col>
+                </v-row>
             </v-container>
         </v-content>
     </v-app>
@@ -256,18 +301,7 @@
                 newPlanetName:'',
                 newPlanetType:'',
                 starName: '',
-
-                stageSize: {
-                    width: width,
-                    height: height
-                },
-
-                planetCanvasParam: {
-                    x: 100,
-                    y: 100,
-                    radius: 60,
-                    fill: 'blue'
-                }
+                planetName: '',
             }
         },
         created() {
@@ -282,6 +316,16 @@
 
 
         methods: {
+
+            selectStar() {
+                console.log('this.starName')
+                console.log(this.starName)
+
+
+            },
+
+
+
             computePlanetColor(planetType) {
                 switch (planetType) {
                     case 'Metal': return '#9f8164'
@@ -330,6 +374,19 @@
             }
         },
         computed: {
+
+            planetsAvailable() {
+                // @change="selectStar()"
+
+                this.stars.forEach(value => {
+                    //this.starsAvailable.push(value.objectName)
+
+                })
+
+
+            },
+
+
             comp_planetButton() {
                 return !this.newPlanetName
             },

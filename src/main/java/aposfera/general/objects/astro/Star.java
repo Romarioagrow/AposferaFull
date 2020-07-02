@@ -19,16 +19,21 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class Star extends AstroObject {
     //private final String = "Star";
+
     private String spectralClass;
     private Double age;
     private Integer temperature;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    List<Planet> planets = new LinkedList<>();
-
     public Star (String name) {
         super (name, "star");
     }
+
+    @OneToMany(fetch = FetchType.EAGER)
+    List<Planet> planets = new LinkedList<>();
+
+
+
+
 
     /*public void setStarParams(String starClass, Integer starTemp) {
         this.spectralClass = starClass;
