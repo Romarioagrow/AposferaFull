@@ -1,8 +1,7 @@
-package aposfera.services;
+package aposfera.server.services;
 
-import aposfera.general.objects.astro.AstroObject;
 import aposfera.general.objects.astro.Planet;
-import aposfera.repos.AstroRepo;
+import aposfera.server.repos.AstroRepo;
 import aposfera.general.objects.astro.Star;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;

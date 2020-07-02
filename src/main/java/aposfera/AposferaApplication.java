@@ -3,8 +3,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AposferaFullstackApp {
+public class AposferaApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AposferaFullstackApp.class, args);
+        SpringApplication.run(AposferaApplication.class, args);
     }
 }
