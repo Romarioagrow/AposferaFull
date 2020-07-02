@@ -1,12 +1,44 @@
 `<template>
     <v-app>
+
+        <!--<v-content>
+
+
+
+
+        </v-content>-->
+
+
         <v-content>
-            <v-container>
-                <v-row>
-                    <v-col v-for="star in stars" :key="star.objectID">
+
+
+
+            <!--SYSTEMS STAR MAP-->
+            <v-container fluid class="system-map-container">
+
+                <!--<v-row>
+                    <div>
+                        <v-stage ref="stage" :config="stageSize">
+                            <v-layer>
+                                <v-text :config="{text: 'Some text on canvas', fontSize: 15}"/>
+                                <v-circle :config="{
+                                      x: 200,
+                                      y: 100,
+                                      radius: 50,
+                                      fill: 'blue'
+                                    }"
+                                />
+                            </v-layer>
+                            <v-layer ref="dragLayer"></v-layer>
+                        </v-stage>
+                    </div>
+                </v-row>-->
+
+                <v-row v-for="star in stars" :key="star.objectID">
+                    <v-col >
 
                         <!--STAR CARD-->
-                        <v-card max-width="250">
+                        <v-card >
                             <v-card-actions v-if="deleteMode">
                                 <v-btn icon @click="deleteStar(star.objectID)">
                                     <v-icon>mdi-delete</v-icon>
@@ -34,21 +66,78 @@
                                 <span v-else>Planets</span>
                             </v-card-subtitle>
 
-                            <v-card-actions v-for="(planet, i) in star.planets" :key="planet.objectID">
-                                <span class="font-weight-thin">{{i+1}}&nbsp;</span>
-                                <v-chip class="ma-2" :color="computePlanetColor(planet.planetType)" :text-color="computePlanetColor(planet.planetType)" outlined>
-                                    <v-avatar left>
-                                        <v-icon>mdi-earth</v-icon>
-                                    </v-avatar>
-                                    <span class="font-weight-medium">{{planet.objectName}}&nbsp;</span>
-                                    <span class="font-weight-light">{{planet.planetType}}</span>
-                                </v-chip>
+                            <!--PLANETS OF STAR-->
+                            <v-card-actions>
+                                <div>
+                                    <v-row >
+                                        <!--PLANET CARD-->
+                                        <v-card v-for="(planet, i) in star.planets" :key="planet.objectID" style="margin: auto;" class="mb-1 ml-2">
+                                            <v-col>
+                                                <span class="font-weight-thin">{{i + 1}}</span>
+                                                <v-chip class="ma-2" :color="computePlanetColor(planet.planetType)" :text-color="computePlanetColor(planet.planetType)" outlined>
+                                                    <v-avatar left>
+                                                        <v-icon>mdi-earth</v-icon>
+                                                    </v-avatar>
+                                                    <span class="font-weight-medium">{{planet.objectName}}&nbsp;</span>
+                                                    <span class="font-weight-light">{{planet.planetType}}</span>
+                                                </v-chip>
+                                            </v-col>
+                                            <!--PLANET CANVAS-->
+                                            <v-card-actions>
+
+
+
+                                                <v-btn
+                                                        color="#c1440e"
+                                                        fab
+                                                        x-large
+                                                        dark
+                                                        width="150"
+                                                        height="150"
+                                                >
+                                                    <img
+                                                            src="https://pngimg.com/uploads/mars_planet/mars_planet_PNG28.png"
+                                                            width="150"
+                                                            height="150">
+                                                </v-btn>
+
+
+
+
+                                                <!--<div>
+                                                    <v-stage ref="stage" :config="stageSize">
+                                                        <v-layer>
+                                                            <v-text :config="{text: 'Some text on canvas', fontSize: 15}"/>
+                                                            <v-circle :config=planetCanvasParam >
+                                                                <v-img src="https://w0.pngwave.com/png/174/688/earth-m-02j71-astronomical-object-planet-space-planet-png-clip-art.png"></v-img>
+                                                            </v-circle>
+                                                        </v-layer>
+                                                        <v-layer ref="dragLayer"></v-layer>
+                                                    </v-stage>
+                                                </div>-->
+
+
+
+
+                                            </v-card-actions>
+
+
+                                        </v-card>
+
+
+                                    </v-row>
+                                </div>
                             </v-card-actions>
                         </v-card>
                     </v-col>
                 </v-row>
             </v-container>
 
+
+
+
+
+            <!--STAR SYSTEMS MENU-->
             <v-container>
                 <v-card>
                     <v-card-title>
@@ -73,6 +162,10 @@
                 </v-card>
             </v-container>
 
+
+
+
+            <!--STAR SYSTEMS MENU-->
             <v-container>
                 <v-card>
                     <v-card-title>
@@ -114,11 +207,22 @@
 </template>
 
 <script>
+    /*PLANET CANVAS PARAMS*/
+    const width = 200;
+    const height = 200;
+    let vm = {};
+
+
+
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
     }
+
+
+
+
     import axios from 'axios'
     export default {
         data() {
@@ -132,7 +236,19 @@
 
                 newPlanetName:'',
                 newPlanetType:'',
-                starName: ''
+                starName: '',
+
+                stageSize: {
+                    width: width,
+                    height: height
+                },
+
+                planetCanvasParam: {
+                    x: 100,
+                    y: 100,
+                    radius: 60,
+                    fill: 'blue'
+                }
             }
         },
         created() {
@@ -213,4 +329,13 @@
     }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+    .system-map-container {
+        /*margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 5%;*/
+    }
+
+
+</style>
