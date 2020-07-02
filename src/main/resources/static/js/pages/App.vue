@@ -34,6 +34,8 @@
                     </div>
                 </v-row>-->
 
+
+                <!--SYSTEM STAR FOR-->
                 <v-row v-for="star in stars" :key="star.objectID">
                     <v-col >
 
@@ -67,67 +69,84 @@
                             </v-card-subtitle>
 
                             <!--PLANETS OF STAR-->
-                            <v-card-actions>
-                                <div>
-                                    <v-row >
-                                        <!--PLANET CARD-->
-                                        <v-card v-for="(planet, i) in star.planets" :key="planet.objectID" style="margin: auto;" class="mb-1 ml-2">
-                                            <v-col>
-                                                <span class="font-weight-thin">{{i + 1}}</span>
-                                                <v-chip class="ma-2" :color="computePlanetColor(planet.planetType)" :text-color="computePlanetColor(planet.planetType)" outlined>
-                                                    <v-avatar left>
-                                                        <v-icon>mdi-earth</v-icon>
-                                                    </v-avatar>
-                                                    <span class="font-weight-medium">{{planet.objectName}}&nbsp;</span>
-                                                    <span class="font-weight-light">{{planet.planetType}}</span>
-                                                </v-chip>
-                                            </v-col>
-                                            <!--PLANET CANVAS-->
+
+                            <v-row>
+
+                                <v-col cols="3">
+                                    <v-card-actions>
+                                        <v-card>
                                             <v-card-actions>
-
-
-
                                                 <v-btn
-                                                        color="#c1440e"
+                                                        color="#feb92e"
                                                         fab
                                                         x-large
                                                         dark
-                                                        width="150"
-                                                        height="150"
+                                                        width="400"
+                                                        height="400"
                                                 >
                                                     <img
-                                                            src="https://pngimg.com/uploads/mars_planet/mars_planet_PNG28.png"
-                                                            width="150"
-                                                            height="150">
+                                                            src="http://pngimg.com/uploads/sun/sun_PNG13449.png"
+                                                            width="400"
+                                                            height="400">
                                                 </v-btn>
-
-
-
-
-                                                <!--<div>
-                                                    <v-stage ref="stage" :config="stageSize">
-                                                        <v-layer>
-                                                            <v-text :config="{text: 'Some text on canvas', fontSize: 15}"/>
-                                                            <v-circle :config=planetCanvasParam >
-                                                                <v-img src="https://w0.pngwave.com/png/174/688/earth-m-02j71-astronomical-object-planet-space-planet-png-clip-art.png"></v-img>
-                                                            </v-circle>
-                                                        </v-layer>
-                                                        <v-layer ref="dragLayer"></v-layer>
-                                                    </v-stage>
-                                                </div>-->
-
-
-
-
                                             </v-card-actions>
-
-
                                         </v-card>
+                                    </v-card-actions>
+                                </v-col>
 
 
-                                    </v-row>
-                                </div>
-                            </v-card-actions>
+                                <v-col>
+                                    <v-card-actions>
+                                        <div>
+                                            <v-row >
+                                                <!--PLANET CARD-->
+                                                <v-card v-for="(planet, i) in star.planets" :key="planet.objectID" style="margin: auto;" class="mb-1 ml-2">
+                                                    <v-col>
+                                                        <span class="font-weight-thin">{{i + 1}}</span>
+                                                        <v-chip class="ma-2" :color="computePlanetColor(planet.planetType)" :text-color="computePlanetColor(planet.planetType)" outlined>
+                                                            <v-avatar left>
+                                                                <v-icon>mdi-earth</v-icon>
+                                                            </v-avatar>
+                                                            <span class="font-weight-medium">{{planet.objectName}}&nbsp;</span>
+                                                            <span class="font-weight-light">{{planet.planetType}}</span>
+                                                        </v-chip>
+                                                    </v-col>
+
+                                                    <!--PLANET CANVAS-->
+                                                    <v-card-actions>
+                                                        <v-btn
+                                                                color="#c1440e"
+                                                                fab
+                                                                x-large
+                                                                dark
+                                                                width="150"
+                                                                height="150"
+                                                        >
+                                                            <img
+                                                                    src="https://pngimg.com/uploads/mars_planet/mars_planet_PNG28.png"
+                                                                    width="150"
+                                                                    height="150">
+                                                        </v-btn>
+                                                        <!--<div>
+                                                            <v-stage ref="stage" :config="stageSize">
+                                                                <v-layer>
+                                                                    <v-text :config="{text: 'Some text on canvas', fontSize: 15}"/>
+                                                                    <v-circle :config=planetCanvasParam >
+                                                                        <v-img src="https://w0.pngwave.com/png/174/688/earth-m-02j71-astronomical-object-planet-space-planet-png-clip-art.png"></v-img>
+                                                                    </v-circle>
+                                                                </v-layer>
+                                                                <v-layer ref="dragLayer"></v-layer>
+                                                            </v-stage>
+                                                        </div>-->
+                                                    </v-card-actions>
+                                                </v-card>
+                                            </v-row>
+                                        </div>
+                                    </v-card-actions>
+                                </v-col>
+                            </v-row>
+
+
                         </v-card>
                     </v-col>
                 </v-row>
