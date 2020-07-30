@@ -1,314 +1,35 @@
 `<template>
   <v-app>
-    <!--<v-content>
-    </v-content>-->
     <v-content>
+      <v-app-bar color="deep-purple accent-4" dense dark>
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <v-toolbar-title>Aposfera</v-toolbar-title>
+
+        <!--DialogButton-->
+        <create-menu></create-menu>
+
+        <v-spacer></v-spacer>
+        <!--<v-btn icon>
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>-->
+        <v-menu left bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon v-bind="attrs" v-on="on">
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item v-for="n in 5" :key="n" @click="() => {}">
+              <v-list-item-title>Option {{ n }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-app-bar>
+
+
+      <!--|||||||||||||||||||||||||-->
       <!--SYSTEMS STAR MAP-->
-      <v-container fluid class="system-map-container">
-
-
-        <v-row justify="center">
-          <v-btn
-              color="primary"
-              dark
-              @click.stop="dialog = true"
-          >
-            Open Dialog
-          </v-btn>
-
-          <v-dialog
-              v-model="dialog"
-              max-width="1000"
-          >
-            <v-card>
-              <v-card-title class="headline">
-                Add new AstroObjects Menu
-              </v-card-title>
-              <v-card-actions>
-                <v-row>
-                  <v-col>
-                    <v-card outlined>
-                      <v-card-title>
-                        Add star
-                      </v-card-title>
-                      <v-card-actions>
-                        <v-row>
-                          <v-col>
-                            <v-text-field label="Star name" v-model="newStarName"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="Star class" v-model="newStarClass"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="Star temperature" v-model="newStarTemp"></v-text-field>
-                          </v-col>
-                        </v-row>
-                      </v-card-actions>
-                      <v-card-actions>
-                        <v-btn color="primary" @click="addNewStar()" :disabled="comp_starButton">Add New Star</v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-col>
-                </v-row>
-              </v-card-actions>
-              <!--STAR SYSTEMS MENU-->
-              <v-card-actions>
-                <v-row>
-                  <v-col>
-                    <v-card outlined>
-                      <v-card-title>
-                        Add planet to star
-                      </v-card-title>
-                      <v-card-actions>
-                        <v-row>
-                          <v-col>
-                            <v-select
-                                :items="starsAvailable"
-                                v-model="starName"
-                                label="Select Star"
-                                @change="selectStar()"
-                                solo
-                            ></v-select>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="Planet name" v-model="newPlanetName"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="Planet type" v-model="newPlanetType"></v-text-field>
-                          </v-col>
-                        </v-row>
-                      </v-card-actions>
-                      <v-card-actions>
-                        <v-btn color="success" @click="addNewPlanet()" :disabled="comp_planetButton">Add New Planet</v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-col>
-                </v-row>
-              </v-card-actions>
-              <!---->
-              <v-card-actions>
-                <v-row>
-                  <v-col>
-                    <v-btn color="red" :outlined="!deleteMode" @click.stop="deleteMode = !deleteMode">Delete Mode</v-btn>
-                  </v-col>
-                </v-row>
-              </v-card-actions>
-              <!---->
-              <!--MOON TO PLANET-->
-              <v-card-actions>
-                <v-row>
-                  <v-col>
-                    <v-card outlined>
-                      <v-card-title>
-                        Add moon to planet
-                      </v-card-title>
-                      <v-card-actions>
-                        <v-row>
-                          <v-col>
-                            <v-select
-                                :items="starsAvailable"
-                                v-model="starName"
-                                label="Select star"
-                                @change="selectStar()"
-                                solo
-                            ></v-select>
-                          </v-col>
-                          <v-col>
-                            <v-select
-                                :items="planetsAvailable"
-                                v-model="planetName"
-                                label="Select planet"
-                                solo
-                            ></v-select>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="Moon name" v-model="newPlanetName"></v-text-field>
-                          </v-col>
-                          <v-col>
-                            <v-text-field label="Planet type" v-model="newPlanetType"></v-text-field>
-                          </v-col>
-                        </v-row>
-                      </v-card-actions>
-                      <v-card-actions>
-                        <v-btn color="success" @click="addNewMoon()" :disabled="comp_planetButton">Add New Moon</v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-col>
-                </v-row>
-              </v-card-actions>
-              <!---->
-              <v-card-actions>
-                <v-row>
-                  <v-col>
-                    <v-btn color="red" :outlined="!deleteMode" @click.stop="deleteMode = !deleteMode">Delete Mode</v-btn>
-                  </v-col>
-                </v-row>
-              </v-card-actions>
-              <!---->
-              <!-- <v-card-text>
-                 Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-               </v-card-text>
-
-               <v-card-actions>
-                 <v-spacer></v-spacer>
-
-                 <v-btn
-                     color="green darken-1"
-                     text
-                     @click="dialog = false"
-                 >
-                   Disagree
-                 </v-btn>
-
-                 <v-btn
-                     color="green darken-1"
-                     text
-                     @click="dialog = false"
-                 >
-                   Agree
-                 </v-btn>
-               </v-card-actions>-->
-            </v-card>
-          </v-dialog>
-        </v-row>
-
-
-
-        <!--<div class="text-center">
-          <v-dialog v-model="dialog" width="500">
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                  color="red lighten-2"
-                  dark
-                  v-bind="attrs"
-                  v-on="on"
-              >
-                Click Me
-              </v-btn>
-            </template>
-            &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
-            &lt;!&ndash;STAR SYSTEMS MENU&ndash;&gt;
-            <v-row>
-              <v-col>
-                <v-card>
-                  <v-card-title>
-                    Add star
-                  </v-card-title>
-                  <v-card-actions>
-                    <v-row>
-                      <v-col>
-                        <v-text-field label="Star name" v-model="newStarName"></v-text-field>
-                      </v-col>
-                      <v-col>
-                        <v-text-field label="Star class" v-model="newStarClass"></v-text-field>
-                      </v-col>
-                      <v-col>
-                        <v-text-field label="Star temperature" v-model="newStarTemp"></v-text-field>
-                      </v-col>
-                    </v-row>
-                  </v-card-actions>
-                  <v-card-actions>
-                    <v-btn color="primary" @click="addNewStar()" :disabled="comp_starButton">Add New Star</v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-col>
-            </v-row>
-            &lt;!&ndash;STAR SYSTEMS MENU&ndash;&gt;
-            <v-row>
-              <v-col>
-                <v-card>
-                  <v-card-title>
-                    Add planet to star
-                  </v-card-title>
-                  <v-card-actions>
-                    <v-row>
-                      <v-col>
-                        <v-select
-                            :items="starsAvailable"
-                            v-model="starName"
-                            label="Select Star"
-                            @change="selectStar()"
-                            solo
-                        ></v-select>
-                      </v-col>
-                      <v-col>
-                        <v-text-field label="Planet name" v-model="newPlanetName"></v-text-field>
-                      </v-col>
-                      <v-col>
-                        <v-text-field label="Planet type" v-model="newPlanetType"></v-text-field>
-                      </v-col>
-                    </v-row>
-                  </v-card-actions>
-                  <v-card-actions>
-                    <v-btn color="success" @click="addNewPlanet()" :disabled="comp_planetButton">Add New Planet</v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-col>
-            </v-row>
-            &lt;!&ndash;&ndash;&gt;
-            <v-row>
-              <v-col>
-                <v-btn color="red" :outlined="!deleteMode" @click.stop="deleteMode = !deleteMode">Delete Mode</v-btn>
-              </v-col>
-            </v-row>
-            &lt;!&ndash;&ndash;&gt;
-            &lt;!&ndash;MOON TO PLANET&ndash;&gt;
-            <v-row>
-              <v-col>
-                <v-card>
-                  <v-card-title>
-                    Add moon to planet
-                  </v-card-title>
-                  <v-card-actions>
-                    <v-row>
-                      <v-col>
-                        <v-select
-                            :items="starsAvailable"
-                            v-model="starName"
-                            label="Select star"
-                            @change="selectStar()"
-                            solo
-                        ></v-select>
-                      </v-col>
-                      <v-col>
-                        <v-select
-                            :items="planetsAvailable"
-                            v-model="planetName"
-                            label="Select planet"
-                            solo
-                        ></v-select>
-                      </v-col>
-                      <v-col>
-                        <v-text-field label="Moon name" v-model="newPlanetName"></v-text-field>
-                      </v-col>
-                      <v-col>
-                        <v-text-field label="Planet type" v-model="newPlanetType"></v-text-field>
-                      </v-col>
-                    </v-row>
-                  </v-card-actions>
-                  <v-card-actions>
-                    <v-btn color="success" @click="addNewMoon()" :disabled="comp_planetButton">Add New Moon</v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-col>
-            </v-row>
-            &lt;!&ndash;&ndash;&gt;
-            <v-row>
-              <v-col>
-                <v-btn color="red" :outlined="!deleteMode" @click.stop="deleteMode = !deleteMode">Delete Mode</v-btn>
-              </v-col>
-            </v-row>
-            &lt;!&ndash;&ndash;&gt;
-          </v-dialog>-->
-        </div>
-        <!---->
-
-
-
-
-
-        <!--|||||||||||||||||||||||||-->
-        <!--SYSTEM STAR FOR-->
+      <v-container fluid class="system-map-container" >
         <v-row v-for="star in stars" :key="star.objectID">
           <v-col >
             <!--STAR CARD-->
@@ -391,17 +112,6 @@
                                   width="150"
                                   height="150">
                             </v-btn>
-                            <!--<div>
-                                <v-stage ref="stage" :config="stageSize">
-                                    <v-layer>
-                                        <v-text :config="{text: 'Some text on canvas', fontSize: 15}"/>
-                                        <v-circle :config=planetCanvasParam >
-                                            <v-img src="https://w0.pngwave.com/png/174/688/earth-m-02j71-astronomical-object-planet-space-planet-png-clip-art.png"></v-img>
-                                        </v-circle>
-                                    </v-layer>
-                                    <v-layer ref="dragLayer"></v-layer>
-                                </v-stage>
-                            </div>-->
                           </v-card-actions>
                         </v-card>
                       </v-row>
@@ -419,28 +129,20 @@
 
 <script>
 import axios from 'axios'
+import CreateMenu from "./CreateMenu.vue";
 const config = {
   headers: {
     'Content-Type': 'application/json'
   }
 }
-
 export default {
+  components: {
+    CreateMenu
+  },
   data() {
     return {
-      dialog: false,
-
-      deleteMode: false,
-
-      newStarName:'',
-      newStarClass:'',
-      newStarTemp:'',
       stars: [],
-
-      newPlanetName:'',
-      newPlanetType:'',
-      starName: '',
-      planetName: '',
+      deleteMode: false,
     }
   },
   created() {
@@ -471,43 +173,15 @@ export default {
         this.stars = response.data
       })
     },
-    addNewStar() {
-      const data = {
-        'newStarName': this.newStarName,
-        'newStarTemp': this.newStarTemp,
-        'newStarClass': this.newStarClass
-      }
-      const uri = '/api/general/astro/star/new'
-      axios.post(uri, data, config).then(response => {
-        this.stars = response.data
-      })
-    },
-    addNewPlanet() {
-      const data = {
-        'starName': this.starName,
-        'newPlanetName': this.newPlanetName,
-        'newPlanetType': this.newPlanetType
-      }
-      const uri = '/api/general/astro/star/addPlanet'
-      axios.post(uri, data, config).then(response => {
-        this.stars = response.data
-      })
-    }
+
   },
   computed: {
-    planetsAvailable() {
-      this.stars.forEach(value => {
-      })
-    },
-
     comp_planetButton() {
       return !this.newPlanetName
     },
-
     comp_starButton() {
       return !this.newStarName
     },
-
     starsAvailable () {
       let starsAvailable = []
       this.stars.forEach(value => starsAvailable.push(value.objectName))
@@ -519,8 +193,7 @@ export default {
 
 <style scoped>
 .system-map-container {
-  /*margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 5%;*/
+  min-height: 1000px;
+  border: 2px solid darkblue;
 }
 </style>
