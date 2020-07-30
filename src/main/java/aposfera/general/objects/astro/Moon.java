@@ -6,9 +6,11 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Data
 @Entity
+@Table(name = "Moons")
 @RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Moon extends AstroObject {

@@ -5,16 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.HashMap;
-import java.util.Map;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.util.UUID;
 
 @Data
 @Entity
 @NoArgsConstructor
+@Inheritance(strategy= InheritanceType.JOINED)
 public class AstroObject implements Locatable {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)

@@ -8,11 +8,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.LinkedList;
 import java.util.List;
 
 @Data
 @Entity
+@Table(name = "Planets")
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Planet extends AstroObject{
@@ -25,7 +27,7 @@ public class Planet extends AstroObject{
     private Double gravity;
 
     public Planet (String name) {
-        super (name, AstroObjectType.PLANET); /// AstroTypes.Planet
+        super (name, AstroObjectType.PLANET);
     }
 
     // Спутники объекта

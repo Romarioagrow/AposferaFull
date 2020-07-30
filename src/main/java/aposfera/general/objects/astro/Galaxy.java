@@ -9,24 +9,21 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "StarSystems")
+@Table(name = "Galaxies")
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class StarSystem extends AstroObject {
+public class Galaxy extends AstroObject {
 
-    public StarSystem(String name) {
-        super (name, AstroObjectType.SYSTEM);
+    public Galaxy(String name) {
+        super (name, AstroObjectType.GALAXY);
     }
 
     @OneToMany(fetch = FetchType.EAGER)
-    List<Star> stars = new ArrayList<>();
-
-
-
+    Set<StarSystem> stars = new LinkedHashSet<>();
 
 }
