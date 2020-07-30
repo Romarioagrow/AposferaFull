@@ -1,5 +1,6 @@
 package aposfera.general.objects.astro;
 
+import aposfera.general.objects.astro.enums.AstroObjectType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,7 @@ public class Planet extends AstroObject{
     private Double gravity;
 
     public Planet (String name) {
-        super (name, "Planet"); /// AstroTypes.Planet
+        super (name, AstroObjectType.PLANET); /// AstroTypes.Planet
     }
 
     // Спутники объекта

@@ -1,5 +1,6 @@
 package aposfera.general.objects.astro;
 
+import aposfera.general.objects.astro.enums.AstroObjectType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ public class Moon extends AstroObject {
     private Double rotationTIME, planetDISTANCE;
 
     public Moon (String name) {
-        super (name, "Moon"); /// AstroTypes.Moon
+        super (name, AstroObjectType.MOON); /// AstroTypes.Moon
     }
 
 

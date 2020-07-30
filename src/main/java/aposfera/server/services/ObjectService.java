@@ -1,6 +1,7 @@
 package aposfera.server.services;
 
 import aposfera.general.objects.astro.Planet;
+import aposfera.general.objects.astro.enums.AstroObjectType;
 import aposfera.server.repos.AstroRepo;
 import aposfera.general.objects.astro.Star;
 import lombok.AllArgsConstructor;
@@ -38,8 +39,8 @@ public class ObjectService {
     }
 
     public List<Star> listAllStars() {
-        log.info(astroRepo.findAllByObjectTypeIgnoreCase("Star").toString());
-        return astroRepo.findAllByObjectTypeIgnoreCase("Star");
+        log.info(astroRepo.findAllByObjectType(AstroObjectType.STAR).toString());
+        return astroRepo.findAllByObjectType(AstroObjectType.STAR);
     }
 
     public List<Star> addNewPlanetToStar(Map<String, String> data) {

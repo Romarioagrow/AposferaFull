@@ -1,5 +1,6 @@
 package aposfera.general.objects.astro;
 
+import aposfera.general.objects.astro.enums.AstroObjectType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,11 +22,10 @@ public class Star extends AstroObject {
     //private final String = "Star";
 
     private String spectralClass;
-    private Double age;
     private Integer temperature;
 
     public Star (String name) {
-        super (name, "star");
+        super (name, AstroObjectType.STAR);
     }
 
     @OneToMany(fetch = FetchType.EAGER)
