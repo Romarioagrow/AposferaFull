@@ -1,6 +1,7 @@
-package aposfera.general.objects.astro;
+package aposfera.general.core.astro;
 
-import aposfera.general.objects.astro.enums.AstroObjectType;
+import aposfera.general.core.astro.enums.AstroObjectType;
+import aposfera.general.core.astro.interfaces.Locatable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
 @Data
 @Entity
 @NoArgsConstructor
-@Inheritance(strategy= InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class AstroObject implements Locatable {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)

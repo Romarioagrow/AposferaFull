@@ -1,4 +1,4 @@
-package aposfera.general.objects.astro.enums;
+package aposfera.general.core.astro.enums;
 
 public enum AstroObjectType {
 

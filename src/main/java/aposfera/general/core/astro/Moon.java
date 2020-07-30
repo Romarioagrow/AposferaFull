@@ -1,6 +1,6 @@
-package aposfera.general.objects.astro;
+package aposfera.general.core.astro;
 
-import aposfera.general.objects.astro.enums.AstroObjectType;
+import aposfera.general.core.astro.enums.AstroObjectType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;

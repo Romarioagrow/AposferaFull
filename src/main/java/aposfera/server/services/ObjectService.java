@@ -1,9 +1,9 @@
 package aposfera.server.services;
 
-import aposfera.general.objects.astro.Planet;
-import aposfera.general.objects.astro.enums.AstroObjectType;
+import aposfera.general.core.astro.Planet;
+import aposfera.general.core.astro.enums.AstroObjectType;
 import aposfera.server.repos.AstroRepo;
-import aposfera.general.objects.astro.Star;
+import aposfera.general.core.astro.Star;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;

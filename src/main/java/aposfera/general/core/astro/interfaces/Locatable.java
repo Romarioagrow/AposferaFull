@@ -1,4 +1,6 @@
-package aposfera.general.objects.astro;
+package aposfera.general.core.astro.interfaces;
+
+import aposfera.general.core.astro.AstroObject;
 
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -16,6 +18,7 @@ public interface Locatable extends Serializable {
     static void getLocation(AstroObject astroObject) {
 
     }
+
 
     static void objectInfo() {
 
