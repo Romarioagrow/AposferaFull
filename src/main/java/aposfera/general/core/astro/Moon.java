@@ -20,7 +20,4 @@ public class Moon extends AstroObject {
     public Moon (String name) {
         super (name, AstroObjectType.MOON); /// AstroTypes.Moon
     }
-
-
-
 }

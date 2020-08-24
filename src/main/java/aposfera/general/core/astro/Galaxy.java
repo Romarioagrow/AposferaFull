@@ -25,5 +25,4 @@ public class Galaxy extends AstroObject {
 
     @OneToMany(fetch = FetchType.EAGER)
     Set<StarSystem> stars = new LinkedHashSet<>();
-
 }
