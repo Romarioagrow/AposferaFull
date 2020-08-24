@@ -18,6 +18,14 @@
         </v-card-title>
         <v-card-actions>
           <v-row>
+
+            <!--
+            !!! РАЗБИТЬ НА КОМПОНЕНТЫ
+            -->
+
+            <!--create-astro-object-button-->
+
+
             <v-col cols="4">
               <v-hover v-slot:default="{ hover }">
                 <v-card :elevation="hover ? 12 : 2">
@@ -70,7 +78,7 @@
               <v-hover v-slot:default="{ hover }">
                 <v-card :elevation="hover ? 12 : 2">
                   <v-card-actions>
-                    <v-btn block text height="200">
+                    <v-btn block text height="200" @click="addNewGalaxy()">
                       Add New Galaxy
                     </v-btn>
                   </v-card-actions>
@@ -222,6 +230,12 @@ export default {
     }
   },
   methods: {
+
+
+    addNewGalaxy() {
+
+    },
+
     selectStar() {
       console.log('this.starName')
       console.log(this.starName)
