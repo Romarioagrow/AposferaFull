@@ -1,12 +1,11 @@
-`<template>
+<template>
   <v-app>
     <v-content>
       <v-app-bar color="deep-purple accent-4" dense dark>
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
         <v-toolbar-title>Aposfera</v-toolbar-title>
 
-        <!--DialogButton-->
-        <create-menu></create-menu>
+
 
         <v-spacer></v-spacer>
         <!--<v-btn icon>
@@ -27,9 +26,23 @@
       </v-app-bar>
 
 
-      <!--|||||||||||||||||||||||||-->
+      <!--TO PAGE ELEMENT-->
       <!--SYSTEMS STAR MAP-->
       <v-container fluid class="system-map-container" >
+
+        <v-row>
+          <v-col>
+            <!--DialogButton-->
+            <create-menu></create-menu>
+
+            <v-btn outlined @click="addShip()">
+              Add Ship
+            </v-btn>
+
+          </v-col>
+        </v-row>
+
+
         <v-row v-for="star in stars" :key="star.objectID">
           <v-col >
             <!--STAR CARD-->
@@ -153,6 +166,13 @@ export default {
     })
   },
   methods: {
+    addShip() {
+      console.log('Add ship')
+      const uri = '/api/rest/ship/add'
+      axios.post(uri).then(response => {
+        console.log('response', response)
+      })
+    },
     selectStar() {
       console.log('this.starName')
       console.log(this.starName)
