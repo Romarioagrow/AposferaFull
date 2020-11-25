@@ -14,13 +14,12 @@ public abstract class AbstractShip implements ShipActions {
     private ShipClass shipClass;
 
     protected AstroObject astroTarget = null;
+    protected ObjectTarget objectTarget = null;
+
     private AstroLocation astroLocation = new AstroLocation();
 
     private Integer shipMass;
     private Long powerProduction, powerConsumption;
-
-
-
 
 
 

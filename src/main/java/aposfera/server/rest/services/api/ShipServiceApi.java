@@ -7,4 +7,6 @@ public interface ShipServiceApi {
 
     ShipDto addShip(NewShipDetailDto newShipDetail);
 
+    ShipDto loadShip(String shipID);
+
 }
