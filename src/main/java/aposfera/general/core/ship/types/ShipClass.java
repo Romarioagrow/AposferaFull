@@ -1,7 +1,7 @@
 package aposfera.general.core.ship.types;
 
-public enum ShipType {
+public enum ShipClass {
 
-    NoName;
+    ANACONDA;
 
 }

@@ -2,6 +2,7 @@ package aposfera.general.core.ship;
 
 import aposfera.general.core.astro.AstroObject;
 import aposfera.general.core.ship.types.ShipSize;
+import aposfera.general.core.ship.types.ShipType;
 import lombok.Data;
 import lombok.extern.java.Log;
 
@@ -9,18 +10,19 @@ import lombok.extern.java.Log;
 @Data
 public abstract class AbstractShip implements ShipActions {
 
-    private String shipName;
+    protected String shipName;
 
-    private ShipSize shipType;
-    private ShipClass shipClass;
+    protected ShipSize shipSize;
+    protected ShipClass shipClass;
+    protected ShipType shipType;
 
     protected AstroObject astroTarget = null;
     protected ObjectTarget objectTarget = null;
 
-    private AstroLocation astroLocation = new AstroLocation();
+    protected AstroLocation astroLocation = new AstroLocation();
 
-    private Integer shipMass;
-    private Long powerProduction, powerConsumption;
+    protected Double shipMass;
+    protected Long powerProduction, powerConsumption;
 
     @Override
     public void setAstroTarget(AstroObject astroTarget) {

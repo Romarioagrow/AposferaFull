@@ -6,12 +6,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 
 @Log
-@NoArgsConstructor
+/*@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+@RequiredArgsConstructor*/
 public class Ship extends AbstractShip {
 
     ShipFlightComputer shipFlightComputer;
+
+    public Ship() {
+        this.shipFlightComputer = new ShipFlightComputer();
+    }
 
 
 
