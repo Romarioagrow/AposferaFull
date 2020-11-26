@@ -1,22 +1,16 @@
-package aposfera.server.services;
+package aposfera.server.rest.services.impl;
 
-import aposfera.general.objects.astro.Planet;
-import aposfera.server.repos.AstroRepo;
-import aposfera.general.objects.astro.Star;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 @Log
 @Service
 @AllArgsConstructor
 public class ObjectService {
-    private final AstroRepo astroRepo;
+    //private final AstroRepo astroRepo;
 
-    public List<Star> addNewStar(Map<String, String> data) {
+    /*public List<Star> addNewStar(Map<String, String> data) {
         log.info(data.toString());
 
         //final String type = "Star";
@@ -27,7 +21,7 @@ public class ObjectService {
         String starClass = data.get("newStarClass");
         int starTemp = Integer.parseInt(data.get("newStarTemp").trim());
 
-        Star newStar = new Star(name/*,type*/);
+        Star newStar = new Star(name*//*,type*//*);
         newStar.setSpectralClass(starClass);
         newStar.setTemperature(starTemp);
         //setStarParams();
@@ -38,8 +32,8 @@ public class ObjectService {
     }
 
     public List<Star> listAllStars() {
-        log.info(astroRepo.findAllByObjectTypeIgnoreCase("Star").toString());
-        return astroRepo.findAllByObjectTypeIgnoreCase("Star");
+        log.info(astroRepo.findAllByObjectType(AstroObjectType.STAR).toString());
+        return astroRepo.findAllByObjectType(AstroObjectType.STAR);
     }
 
     public List<Star> addNewPlanetToStar(Map<String, String> data) {
@@ -68,7 +62,7 @@ public class ObjectService {
         log.info(objectID);
         astroRepo.delete(astroRepo.findByObjectID(objectID));
         return listAllStars();
-    }
+    }*/
 
     /*public boolean setStarParams(Star newStar, String starClass, Integer starTemp) {
         newStar.setSpectralClass(starClass);

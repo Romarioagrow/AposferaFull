@@ -1,5 +1,6 @@
-package aposfera.general.objects.astro;
+package aposfera.general.core.astro;
 
+import aposfera.general.core.astro.enums.AstroObjectType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -7,11 +8,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.LinkedList;
 import java.util.List;
 
 @Data
 @Entity
+@Table(name = "Planets")
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Planet extends AstroObject{
@@ -24,7 +27,7 @@ public class Planet extends AstroObject{
     private Double gravity;
 
     public Planet (String name) {
-        super (name, "Planet"); /// AstroTypes.Planet
+        super (name, AstroObjectType.PLANET);
     }
 
     // Спутники объекта
