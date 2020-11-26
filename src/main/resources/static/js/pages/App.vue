@@ -33,11 +33,10 @@
         <v-row>
           <v-col>
             <!--DialogButton-->
-            <create-menu></create-menu>
+            <astro-menu-page></astro-menu-page>
+            <ship-menu-page></ship-menu-page>
 
-            <v-btn outlined @click="addShip()">
-              Add Ship
-            </v-btn>
+
 
           </v-col>
         </v-row>
@@ -142,15 +141,18 @@
 
 <script>
 import axios from 'axios'
-import CreateMenu from "./CreateMenu.vue";
+import AstroMenuPage from "./AstroMenuPage.vue";
+import ShipMenuPage from "./ShipMenuPage.vue";
+
 const config = {
   headers: {
     'Content-Type': 'application/json'
   }
 }
+
 export default {
   components: {
-    CreateMenu
+    AstroMenuPage, ShipMenuPage
   },
   data() {
     return {
