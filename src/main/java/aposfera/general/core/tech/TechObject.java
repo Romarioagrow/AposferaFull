@@ -2,13 +2,15 @@ package aposfera.general.core.tech;
 
 import aposfera.general.core.tech.types.ObjectPurpose;
 import aposfera.general.core.tech.types.TechType;
+import lombok.Data;
 
+@Data
 public class TechObject {
 
-    private String objectName;
+    protected String objectName;
 
-    private TechType techType;
+    protected TechType techType;
 
-    private ObjectPurpose objectPurpose;
+    protected ObjectPurpose objectPurpose;
 
 }

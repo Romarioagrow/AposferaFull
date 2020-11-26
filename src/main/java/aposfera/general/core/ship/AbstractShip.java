@@ -1,6 +1,7 @@
 package aposfera.general.core.ship;
 
 import aposfera.general.core.astro.AstroObject;
+import aposfera.general.core.ship.types.ShipClass;
 import aposfera.general.core.ship.types.ShipSize;
 import aposfera.general.core.ship.types.ShipType;
 import lombok.Data;

@@ -4,8 +4,14 @@ import aposfera.general.core.ship.Ship;
 import aposfera.general.core.ship.ShipBlueprint;
 import aposfera.general.core.ship.ships.AnacondaShip;
 import aposfera.general.core.ship.types.ShipClass;
+import aposfera.general.core.tech.types.TechType;
 
 public class Shipyard extends TechObject {
+
+    public Shipyard() {
+        super();
+        this.techType = TechType.SHIPYARD;
+    }
 
     public Ship constructShip(ShipBlueprint shipBlueprint) {
         ShipClass shipClass = shipBlueprint.getShipClass();

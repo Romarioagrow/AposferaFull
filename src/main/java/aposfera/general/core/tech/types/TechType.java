@@ -1,4 +1,7 @@
 package aposfera.general.core.tech.types;
 
-public class TechType {
+public enum TechType {
+
+    SHIPYARD;
+
 }
