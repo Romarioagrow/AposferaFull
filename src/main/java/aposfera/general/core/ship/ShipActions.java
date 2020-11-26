@@ -15,6 +15,8 @@ public interface ShipActions {
 
     ShipLocation flightToAstroObject(AstroObject astroTarget);
 
+    ObjectTarget flightToObjectTarget(ObjectTarget objectTarget);
+
     ShipLocation jumpToStar(StarCoordinates starCoordinates);
 
 
